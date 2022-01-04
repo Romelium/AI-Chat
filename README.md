@@ -1,5 +1,5 @@
 # AI-Chat
-Chat with an AI-powered by gpt-j. Talk with it, set parameters, and ask questions
+Chat with an AI-powered by GPT-j. Talk with it, set parameters, and ask questions
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
