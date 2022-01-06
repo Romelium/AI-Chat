@@ -73,6 +73,55 @@
   max-width: 800px;
 }
 
+.messages{
+  display: flexbox;
+  overflow: auto;
+  margin: 1rem;
+  margin-bottom: 0px;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  width: 500px;
+  height: 300px;
+}
+
+.message{
+  white-space: pre-wrap;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 50%;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+}
+
+.right{
+  margin-left: auto;
+}
+
+.form {
+  display: grid;
+  grid-template-areas:
+    'input input input input send send';
+  margin: 1rem;
+  margin-top: 0px;
+  color: inherit;
+  width: 500px;
+}
+
+.form textarea
+{
+  grid-area: input;
+  resize: none;
+}
+.form button
+{
+  grid-area: send;
+  padding: 1.5rem;
+}
+
 .card {
   margin: 1rem;
   padding: 1.5rem;
