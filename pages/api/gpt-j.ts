@@ -15,7 +15,6 @@ export default async function handler(
     res.status(405).send({ text: 'Method Not Allowed' })
     return
   }
-  console.log(req.body)
   const body = req.body as {
     context: string,
     token_max_length: number,
