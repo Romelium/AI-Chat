@@ -72,6 +72,15 @@
   flex-wrap: wrap;
   max-width: 800px;
 }
+.game{
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.name{
+  margin: 1rem;
+}
 
 .messages{
   display: flexbox;
@@ -84,18 +93,44 @@
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  width: 500px;
   height: 300px;
 }
 
 .message{
   white-space: pre-wrap;
+  word-wrap: break-word;
   margin: 0.5rem;
   padding: 0.5rem;
   width: 50%;
   border: 1px solid #eaeaea;
   border-radius: 10px;
 }
+.dropbtn {
+  color: inherit;
+  background: inherit;
+  padding: 1rem;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+}
+
+.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  color: inherit;
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+}
+.dropdown-content input{
+  margin: 1rem;
+}
+.dropdown:hover .dropdown-content {display: block;}
 
 .right{
   margin-left: auto;
@@ -108,7 +143,6 @@
   margin: 1rem;
   margin-top: 0px;
   color: inherit;
-  width: 500px;
 }
 
 .form textarea
@@ -120,6 +154,15 @@
 {
   grid-area: send;
   padding: 1.5rem;
+}
+
+.context-description{
+  margin: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  height: 100px;
+  width: 300px;
+  resize: none;
 }
 
 .card {
