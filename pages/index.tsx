@@ -85,7 +85,7 @@ class GPTj_Responder {
       return res.json() as Promise<{ text: string }>
     }).then(data => {
       console.log('receive: ', data)
-      this.context += data.text
+      this.context += data.text + '\n\n'
       return data.text.slice(0, -1); // remove the stop_sequence character
     })
   }
