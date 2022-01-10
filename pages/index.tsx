@@ -45,7 +45,6 @@ function Sender({ onSubmit }: { onSubmit: (message: string) => void; }) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     onSubmit(message)
-    console.log("Sent: " + message)
   }
 
   return (
@@ -75,6 +74,7 @@ class GPTj_Responder {
       top_p: this.top_p,
       stop_sequence: this.stop_sequence,
     };
+    console.log('send: ', payload)
     return fetch('/api/gpt-j', {
       method: 'POST',
       headers: {
@@ -84,6 +84,8 @@ class GPTj_Responder {
     }).then(res => {
       return res.json() as Promise<{ text: string }>
     }).then(data => {
+      console.log('receive: ', data)
+      this.context += data.text
       return data.text.slice(0, -1); // remove the stop_sequence character
     })
   }
@@ -160,7 +162,7 @@ function Game() {
   const [AI_name, setAI_name] = useState('gpt-j');
   const [pre_context, setPre_context] = useState("This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is very nice and empathetic");
   const [context, setContext] = useState('');
-  const [temperature, setTemperature] = useState(0.75);
+  const [temperature, setTemperature] = useState(1);
   const [top_p, setTop_p] = useState(1);
   const [text_to_speech, setText_to_speech] = useState(true);
   const gptj_Responder = new GPTj_Responder();
@@ -169,7 +171,6 @@ function Game() {
   gptj_Responder.GPTj_name = AI_name
   gptj_Responder.temperature = temperature
   gptj_Responder.top_p = top_p
-  console.log(text_to_speech)
   return (
     <div className={styles.game}>
       <Messager responder={gptj_Responder} text_to_speech={text_to_speech} onAddMessage={() => setContext(gptj_Responder.context)}></Messager>
