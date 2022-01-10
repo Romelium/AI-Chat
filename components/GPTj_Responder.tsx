@@ -1,7 +1,15 @@
 export class GPTj_Responder {
-  constructor(public context = '', public token_max_length = 100, public temperature = 1, public top_p = 0.9, public stop_sequence = '"', public your_name = 'you', public GPTj_name = 'GPTj') { }
-  Response(message: string) {
-    this.context += `${this.your_name} says "${message}"\n\n${this.GPTj_name} says "`;
+  context: string
+  constructor(public preContext = '', public token_max_length = 100, public temperature = 1, public top_p = 0.9, public stop_sequence = '"', public your_name = 'you', public GPTj_name = 'GPTj') { this.context = '' }
+  Response(messages: string[]) {
+    this.context = this.preContext
+    console.log({context: this.context, preContext: this.preContext})
+    for (let i = 0; i < messages.length - 2; i += 2) {
+      const message = messages[i];
+      const response = messages[i + 1];
+      this.context += `${this.your_name} says "${message}"\n\n${this.GPTj_name} says "${response}"\n\n`;
+    }
+    this.context += `${this.your_name} says "${messages[messages.length - 1]}"\n\n${this.GPTj_name} says "`;
     const payload = {
       context: this.context,
       token_max_length: this.token_max_length,

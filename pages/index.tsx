@@ -12,28 +12,42 @@ function Chat() {
   const [your_name, setYour_name] = useState('you');
   const [AI_name, setAI_name] = useState('gpt-j');
   const [pre_context, setPre_context] = useState("This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is very nice and empathetic");
-  const [context, setContext] = useState('');
   const [temperature, setTemperature] = useState(1);
   const [top_p, setTop_p] = useState(1);
   const [text_to_speech, setText_to_speech] = useState(true);
   const gptj_Responder = new GPTj_Responder();
-  gptj_Responder.context = (context == '' ? interpolate(pre_context, { your_name: your_name, ai_name: AI_name }) + '\n\n' : '') + context
+  gptj_Responder.preContext = interpolate(pre_context, { your_name: your_name, ai_name: AI_name }) + '\n\n'
   gptj_Responder.your_name = your_name
   gptj_Responder.GPTj_name = AI_name
   gptj_Responder.temperature = temperature
   gptj_Responder.top_p = top_p
   return (
     <div className={styles.game}>
-      <Messager responder={gptj_Responder} text_to_speech={text_to_speech} onAddMessage={() => setContext(gptj_Responder.context)}></Messager>
+      <Messager contenteditable={true} responder={gptj_Responder} text_to_speech={text_to_speech}></Messager>
 
       <label>Your Name
-        <input className={styles.name} type="text" value={your_name} onChange={onChangeSet(setYour_name)} />
+        <input className={styles.name} type="text" list="names" value={your_name} onChange={onChangeSet(setYour_name)} />
         <br />
       </label>
       <label>AI Name
-        <input className={styles.name} type="text" value={AI_name} onChange={onChangeSet(setAI_name)} />
+        <input className={styles.name} type="text" list="names" value={AI_name} onChange={onChangeSet(setAI_name)} />
         <br />
       </label>
+      <datalist id="names">
+        <option>you</option>
+        <option>he</option>
+        <option>she</option>
+        <option>god</option>
+        <option>gpt-j</option>
+        <option>gpt-3</option>
+        <option>obama</option>
+        <option>trump</option>
+        <option>the devil</option>
+        <option>the president</option>
+        <option>the scientist</option>
+        <option>the physicist</option>
+        <option>the mathematician</option>
+      </datalist>
       <label htmlFor="GPTj_name">Description
         <textarea className={styles["context-description"]} value={pre_context} onChange={onChangeSet(setPre_context)} />
         <br />
@@ -64,7 +78,7 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>AI Chat</title>
-        <meta name="description" content="Chat with an AI-powered by GPT-j. Talk with it, set parameters, and ask questions" />
+        <meta name="description" content="Chat with an AI-powered by GPT-j. Talk with it, set parameters, ask questions, and twist words" />
         <link rel="icon" href="/ai-chat.svg" />
       </Head>
 
@@ -74,7 +88,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-          Chat with an AI-powered by{' '} <a href="https://github.com/kingoflolz/mesh-transformer-jax.git">GPT-j</a>. Talk with it, set parameters, and ask questions.
+          Chat with an AI-powered by{' '} <a href="https://github.com/kingoflolz/mesh-transformer-jax.git">GPT-j</a>. Talk with it, set parameters, ask questions, and twist words
         </p>
 
         <Chat></Chat>
