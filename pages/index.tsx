@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>AI Chat</title>
+        <title>AI Chat - Open Source | Powered by GPT-j with 6 billion neurons</title>
         <meta charSet="UTF-8" />
         <meta
           name="description"
