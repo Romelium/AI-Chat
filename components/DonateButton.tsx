@@ -7,8 +7,8 @@ export function DonateButton() {
       <div id="donate-button"></div>
       <Script
         src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js"
-        charSet="UTF-8" />
-      <Script id="donate-button-script" strategy="lazyOnload">
+        charSet="UTF-8" strategy="beforeInteractive" />
+      <Script id="donate-button-script">
         {`
           PayPal.Donation.Button({
           env:'production',
