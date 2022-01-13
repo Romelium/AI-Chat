@@ -7,9 +7,9 @@ export class GPTj_Responder {
     for (let i = 0; i < messages.length - 2; i += 2) {
       const message = messages[i];
       const response = messages[i + 1];
-      this.context += `${this.your_name} says "${message}"\n\n${this.GPTj_name} says "${response}"\n\n`;
+      this.context += `${this.your_name} say "${message}"\n\n${this.GPTj_name} say "${response}"\n\n`;
     }
-    this.context += `${this.your_name} says "${messages[messages.length - 1]}"\n\n${this.GPTj_name} says "`;
+    this.context += `${this.your_name} say "${messages[messages.length - 1]}"\n\n${this.GPTj_name} say "`;
     const payload = {
       context: this.context,
       token_max_length: this.token_max_length,
