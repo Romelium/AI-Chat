@@ -9,7 +9,9 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>AI Chat - Open Source | Powered by GPT-j with 6 billion neurons</title>
+        <title>
+          AI Chat - Open Source | Powered by GPT-j with 6 billion neurons
+        </title>
         <meta charSet="UTF-8" />
         <meta
           name="description"
@@ -21,12 +23,25 @@ const Home: NextPage = () => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Romelianism" />
-        <meta name="google-site-verification" content="aEIqWFtqo_HRgR_m2O_DbWu0Ukrt_zZAWZn7HHARpj8" />
+        <meta
+          name="google-site-verification"
+          content="aEIqWFtqo_HRgR_m2O_DbWu0Ukrt_zZAWZn7HHARpj8"
+        />
         <link rel="icon" href="/ai-chat.svg" />
         <link
           rel="canonical"
           href="https://ai-chat.vercel.app/"
           key="canonical"
+        />
+
+        <meta property="og:title" content="AI Chat - Open Source | Powered by GPT-j with 6 billion neurons" />
+        <meta
+          property="og:description"
+          content="Chat with an AI that's powered by GPT-j. Talk with it, set parameters, ask questions, and twist words"
+        />
+        <meta
+          property="og:image"
+          content="https://ai-chat.vercel.app/ai-chat.vercel.app.jpg"
         />
       </Head>
 
