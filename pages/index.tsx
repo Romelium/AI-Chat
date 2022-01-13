@@ -21,6 +21,7 @@ const Home: NextPage = () => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Romelianism" />
+        <meta name="google-site-verification" content="aEIqWFtqo_HRgR_m2O_DbWu0Ukrt_zZAWZn7HHARpj8" />
         <link rel="icon" href="/ai-chat.svg" />
       </Head>
 
