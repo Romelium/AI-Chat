@@ -10,10 +10,17 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>AI Chat</title>
+        <meta charSet="UTF-8" />
         <meta
           name="description"
-          content="Chat with an AI-powered by GPT-j. Talk with it, set parameters, ask questions, and twist words"
+          content="Open source website. Chat with an AI that's powered by GPT-j. Talk with it, set parameters, ask questions, and twist words"
         />
+        <meta
+          name="keywords"
+          content="Chat, AI, GPT-j, Talk, set parameters, ask questions, twist words, change words"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Romelianism" />
         <link rel="icon" href="/ai-chat.svg" />
       </Head>
 
