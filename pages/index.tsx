@@ -23,6 +23,11 @@ const Home: NextPage = () => {
         <meta name="author" content="Romelianism" />
         <meta name="google-site-verification" content="aEIqWFtqo_HRgR_m2O_DbWu0Ukrt_zZAWZn7HHARpj8" />
         <link rel="icon" href="/ai-chat.svg" />
+        <link
+          rel="canonical"
+          href="https://ai-chat.vercel.app/"
+          key="canonical"
+        />
       </Head>
 
       <main className={styles.main}>
