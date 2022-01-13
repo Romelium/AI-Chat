@@ -26,9 +26,10 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>AI Chat</h1>
+        <h2> Open source website </h2>
 
         <p className={styles.description}>
-          Chat with an AI-powered by{" "}
+          Chat with an AI that&apos;s powered by{" "}
           <a href="https://github.com/kingoflolz/mesh-transformer-jax.git">
             GPT-j
           </a>
@@ -51,7 +52,7 @@ const Home: NextPage = () => {
       </main>
 
       <footer className={styles.footer}>
-        <DonateButton/>
+        <DonateButton />
       </footer>
     </div>
   );
