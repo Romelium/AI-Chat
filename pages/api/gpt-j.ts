@@ -15,19 +15,27 @@ export default async function handler(
     res.status(405).send({ text: 'Method Not Allowed' })
     return
   }
-  const body = req.body as {
+  let {context, token_max_length, temperature, top_p, stop_sequence} = req.body as {
     context: string,
     token_max_length: number,
     temperature: number,
     top_p: number,
     stop_sequence: string,
   }
+
+  //limits
+  token_max_length = Math.min(512, token_max_length)
+  const maxCharLength = 5000 - token_max_length*3
+  if(context.length > maxCharLength){
+    context = context.slice(context.length-maxCharLength)
+  }
+
   const payload = {
-    context: body.context,
-    token_max_length: body.token_max_length.toString(),
-    temperature: body.temperature.toString(),
-    top_p: body.top_p.toString(),
-    stop_sequence: body.stop_sequence,
+    context: context,
+    token_max_length: token_max_length.toString(),
+    temperature: temperature.toString(),
+    top_p: top_p.toString(),
+    stop_sequence: stop_sequence,
   }
   const url = new URL('http://api.vicgalle.net:5000/generate')
   url.search = new URLSearchParams(payload).toString();
