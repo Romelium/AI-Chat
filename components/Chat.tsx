@@ -4,12 +4,13 @@ import { interpolate } from "../utils/interpolate";
 import { GPTj_Responder } from "./GPTj_Responder";
 import { Messager } from "./Messager";
 import { onChangeSet } from "../utils/onChangeSet";
+import { NameDescription } from "./NameDescription";
 
 export function Chat() {
   const [your_name, setYour_name] = useState("you");
   const [AI_name, setAI_name] = useState("gpt-j");
   const [pre_context, setPre_context] = useState(
-    "This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is very nice and funny"
+    "This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is very nice and funny."
   );
   const [temperature, setTemperature] = useState(1);
   const [top_p, setTop_p] = useState(1);
@@ -27,51 +28,32 @@ export function Chat() {
       <Messager
         contenteditable={true}
         responder={gptj_Responder}
-        text_to_speech={text_to_speech} />
-
-      <label>
-        Your Name
-        <input
-          className={styles.name}
-          type="text"
-          list="names"
-          value={your_name}
-          onChange={onChangeSet(setYour_name)} />
-        <br />
-      </label>
-      <label>
-        AI Name
-        <input
-          className={styles.name}
-          type="text"
-          list="names"
-          value={AI_name}
-          onChange={onChangeSet(setAI_name)} />
-        <br />
-      </label>
-      <datalist id="names">
-        <option>you</option>
-        <option>he</option>
-        <option>she</option>
-        <option>god</option>
-        <option>gpt-j</option>
-        <option>gpt-3</option>
-        <option>obama</option>
-        <option>trump</option>
-        <option>the devil</option>
-        <option>the president</option>
-        <option>the scientist</option>
-        <option>the physicist</option>
-        <option>the mathematician</option>
-      </datalist>
-      <label htmlFor="GPTj_name">
-        Description
-        <textarea
-          className={styles["context-description"]}
-          value={pre_context}
-          onChange={onChangeSet(setPre_context)} />
-        <br />
-      </label>
+        text_to_speech={text_to_speech}
+      />
+      <NameDescription
+        your_name={your_name}
+        setYour_name={setYour_name}
+        AI_name={AI_name}
+        setAI_name={setAI_name}
+        pre_context={pre_context}
+        setPre_context={setPre_context}
+        nameDescriptions={
+          [
+            {name: 'you', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} are very nice and funny.'},
+            {name: 'he', description: 'This is a chat between a ${your_name} and him. ${ai_name} is a good person and hard worker.'},
+            {name: 'she', description: 'This is a chat between a ${your_name} and her. ${ai_name} is a good person and hard worker.'},
+            {name: 'god', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is supreme being, creator, and principal object of faith.'},
+            {name: 'gpt-j', description: pre_context},
+            {name: 'obama', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is an American politician, lawyer, and author who served as the 44th president of the United States.'},
+            {name: 'trump', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is an American politician, media personality, and businessman who served as the 45th president of the United States.'},
+            {name: 'the devil', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is the personification of evil as it is conceived in various cultures and religious traditions.'},
+            {name: 'the president', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is a very prominent figure in the country and nice to the people that support it.'},
+            {name: 'the scientist', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is a person who conducts scientific research to advance knowledge in an area of interest.'},
+            {name: 'the physicist', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is a scientist who specializes in the field of physics, which encompasses the interactions of matter and energy at all length and time scales in the physical universe.'},
+            {name: 'the mathematician', description: 'This is a chat between a ${your_name} and ${ai_name}. ${ai_name} is someone who uses an extensive knowledge of mathematics in their work, typically to solve mathematical problems.'},
+          ]
+        }
+      />
       <div className={styles.dropdown}>
         <button className={styles.dropbtn}>Extra Settings</button>
         <div className={styles["dropdown-content"]}>
@@ -83,7 +65,8 @@ export function Chat() {
               min={0}
               step={0.01}
               value={temperature}
-              onChange={onChangeSet(setTemperature)} />
+              onChange={onChangeSet(setTemperature)}
+            />
             <br />
           </label>
           <label>
@@ -94,7 +77,8 @@ export function Chat() {
               min={0}
               step={0.01}
               value={top_p}
-              onChange={onChangeSet(setTop_p)} />
+              onChange={onChangeSet(setTop_p)}
+            />
             <br />
           </label>
           <label>
@@ -102,7 +86,8 @@ export function Chat() {
             <input
               type="checkbox"
               checked={text_to_speech}
-              onChange={(e) => setText_to_speech(e.currentTarget.checked)} />
+              onChange={(e) => setText_to_speech(e.currentTarget.checked)}
+            />
             <br />
           </label>
         </div>
