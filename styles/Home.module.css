@@ -158,10 +158,13 @@
 
 .context-description{
   margin: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   font-size: 0.8rem;
   height: 100px;
-  width: 300px;
+  width: 80%;
   resize: none;
 }
 
