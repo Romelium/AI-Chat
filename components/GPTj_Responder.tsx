@@ -29,10 +29,7 @@ export class GPTj_Responder {
     }).then(data => {
       console.log('receive: ', data);
       const { text } = data;
-      this.context += text;
-      this.context += (text.slice(-1) === this.stop_sequence ? '' : this.stop_sequence); // add if no stop_sequence in the end
-      this.context += '\n\n';
-      return text.slice(0, -1); // remove the stop_sequence character
+      return text;
     });
   }
 }
