@@ -15,6 +15,7 @@ export function Chat() {
   const [temperature, setTemperature] = useState(1);
   const [top_p, setTop_p] = useState(1);
   const [text_to_speech, setText_to_speech] = useState(true);
+  const [filter_bad_words, setFilter_bad_words] = useState(true);
   const gptj_Responder = new GPTj_Responder();
   gptj_Responder.preContext =
     interpolate(pre_context, { your_name: your_name, ai_name: AI_name }) +
@@ -23,6 +24,7 @@ export function Chat() {
   gptj_Responder.GPTj_name = AI_name;
   gptj_Responder.temperature = temperature;
   gptj_Responder.top_p = top_p;
+  gptj_Responder.filter_bad_words = filter_bad_words;
   return (
     <div className={styles.game}>
       <Messager
@@ -87,6 +89,15 @@ export function Chat() {
               type="checkbox"
               checked={text_to_speech}
               onChange={(e) => setText_to_speech(e.currentTarget.checked)}
+            />
+            <br />
+          </label>
+          <label>
+            filter bad words
+            <input
+              type="checkbox"
+              checked={filter_bad_words}
+              onChange={(e) => setFilter_bad_words(e.currentTarget.checked)}
             />
             <br />
           </label>
