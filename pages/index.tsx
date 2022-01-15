@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import styles from "../styles/Home.module.css";
-import { DonateButton } from "../components/DonateButton";
+import { DonateContainer } from "../components/DonateContainer";
 import { Chat } from "../components/Chat";
 
 const Home: NextPage = () => {
@@ -73,7 +73,8 @@ const Home: NextPage = () => {
       </main>
 
       <footer className={styles.footer}>
-        <DonateButton />
+        <h3>Please Donate💖</h3>
+        <DonateContainer />
       </footer>
     </div>
   );
