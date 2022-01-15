@@ -10,11 +10,12 @@ interface MessagerProps {
   contenteditable: boolean;
   onAddMessage: (messages: string[]) => void;
 }
-export class Messager extends React.Component<MessagerProps, { messages: string[]; }> {
+export class Messager extends React.Component<MessagerProps, { messages: string[]; waiting: Boolean; }> {
   constructor(props: MessagerProps) {
     super(props);
     this.state = {
       messages: Array<string>(),
+      waiting: false,
     };
   }
   static defaultProps: MessagerProps = {
@@ -25,6 +26,7 @@ export class Messager extends React.Component<MessagerProps, { messages: string[
   };
 
   async addMessage(message: string) {
+    if(this.state.waiting == true){
     let messages = this.state.messages.slice();
     messages.push(message);
     this.setState({ messages: messages });
@@ -43,6 +45,7 @@ export class Messager extends React.Component<MessagerProps, { messages: string[
     catch {
       messages.pop();
       this.setState({ messages: messages });
+    }
     }
   }
 
