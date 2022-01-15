@@ -1,9 +1,10 @@
 import Script from "next/script";
 import React from "react";
+import styles from "../styles/Home.module.css";
 
-export function DonateButton() {
+export function DonateContainer() {
   return (
-    <div id="donate-button-container">
+    <div className={styles['donate-container']}>
       <div id="donate-button"></div>
       <Script
         src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js"

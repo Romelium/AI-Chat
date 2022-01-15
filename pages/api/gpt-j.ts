@@ -56,7 +56,7 @@ export default async function handler(
     .then(({text}) => {
       if(text === "Sorry, the public API is limited to around 20 queries per every 30 minutes."){
         // replace text with something more understandable
-        res.status(429).send({ text: "Sorry, the website is experiencing heavy usage right now." })
+        res.status(429).send({ text: "Sorry, the website is experiencing heavy usage right now.\nplease try again later." })
       } 
       else{
         res.status(200).send({ text: text })
