@@ -41,7 +41,7 @@ const Home: NextPage = () => {
         />
         <meta
           property="og:image"
-          content="https://ai-chat.vercel.app/ai-chat.vercel.app.jpg"
+          content="https://ai-chat.vercel.app/ai-chat.vercel.app.png"
         />
       </Head>
 
