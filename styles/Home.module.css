@@ -23,11 +23,12 @@
 
 .share{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-flow: row;
+  overflow-x: scroll;
+  width: 300px;
 }
 .share *{
-  margin: 0.1rem;
+  margin: 1rem 0.1rem;
 }
 
 .footer{
