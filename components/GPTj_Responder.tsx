@@ -1,6 +1,8 @@
+import Filter from 'bad-words'
+
 export class GPTj_Responder {
   context: string
-  constructor(public preContext = '', public token_max_length = 100, public temperature = 1, public top_p = 0.9, public stop_sequence = '"', public your_name = 'you', public GPTj_name = 'GPTj') { this.context = '' }
+  constructor(public preContext = '', public token_max_length = 100, public temperature = 1, public top_p = 0.9, public stop_sequence = '"', public filter_bad_words = true, public your_name = 'you', public GPTj_name = 'GPTj') { this.context = '' }
   Response(messages: string[]) {
     this.context = this.preContext
     console.log({context: this.context, preContext: this.preContext})
@@ -28,7 +30,10 @@ export class GPTj_Responder {
       return res.json() as Promise<{ text: string; }>;
     }).then(data => {
       console.log('receive: ', data);
-      const { text } = data;
+      let { text } = data;
+      if(this.filter_bad_words){
+        text = new Filter().clean(text)
+      }
       return text.slice(text.length - 1) === '"' ? text.slice(0, -1) : text; // remove the stop_sequence character
     });
   }

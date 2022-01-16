@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { onChangeSet } from "../utils/onChangeSet";
 
@@ -24,6 +24,10 @@ export function NameDescription({
   setPre_context: React.Dispatch<React.SetStateAction<string>>;
   nameDescriptions: nameDescription[];
 }) {
+  const findescription = (find_name: string) => {return nameDescriptions.find(({name}) => name===find_name)}
+  const createDescription = (your_name_description: string, AI_name_description: string) =>{
+    return `This is a chat between a \${your_name} and \${AI_name}.\n\${your_name} ${your_name_description}.\n\${AI_name} ${AI_name_description}.`
+  }
   return (
     <>
       <label>
@@ -33,7 +37,14 @@ export function NameDescription({
           type="text"
           list="names"
           value={your_name}
-          onChange={onChangeSet(setYour_name)}
+          onChange={(e) => {
+            onChangeSet(setYour_name)(e);
+            const your_name_description = findescription(e.currentTarget.value)?.description
+            const AI_name_description = findescription(AI_name)?.description
+            if(your_name_description !== undefined && AI_name_description !== undefined ){
+              setPre_context(createDescription(your_name_description, AI_name_description))
+            }
+          }}
         />
         <br />
       </label>
@@ -46,9 +57,10 @@ export function NameDescription({
           value={AI_name}
           onChange={(e) => {
             onChangeSet(setAI_name)(e);
-            const nameDescription = nameDescriptions.find(({name}) => name===e.currentTarget.value)
-            if(nameDescription !== undefined){
-              setPre_context(nameDescription.description)
+            const your_name_description = findescription(your_name)?.description
+            const AI_name_description = findescription(e.currentTarget.value)?.description
+            if(your_name_description !== undefined && AI_name_description !== undefined ){
+              setPre_context(createDescription(your_name_description, AI_name_description))
             }
           }}
         />
