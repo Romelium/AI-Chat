@@ -21,6 +21,15 @@
   align-items: center;
 }
 
+.share{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.share *{
+  margin: 0.1rem;
+}
+
 .footer{
   text-align: center;
 }
