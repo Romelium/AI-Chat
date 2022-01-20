@@ -61,5 +61,8 @@ export default async function handler(
       else{
         res.status(200).send({ text: text })
       }
+    }).catch((error) =>{
+      console.log(error)
+      res.status(500).send({ text: "Sorry, the website is experiencing a server error right now.\nplease try again later." })
     })
 }
