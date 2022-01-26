@@ -2,6 +2,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { json } from 'stream/consumers'
 import { URLSearchParams } from 'url'
+import { stringifyWithFloats } from "../../utils/stringifyWithFloats";
+
+async function query(data: any) {
+  const response = await fetch(
+    "https://api-inference.huggingface.co/models/gpt2",
+    {
+        headers: { Authorization: `Bearer ${process.env.hf_token}` },
+        method: "POST",
+        body: stringifyWithFloats({ temperature: 'float', top_p: 'float' })(data),
+    }
+  );
+  const result = await response.json();
+  return result;
+}
 
 type Data = {
   text: string
@@ -17,52 +31,35 @@ export default async function handler(
   }
   let {context, token_max_length, temperature, top_p, stop_sequence} = req.body as {
     context: string,
-    token_max_length: number,
-    temperature: number,
-    top_p: number,
+    token_max_length: number|String,
+    temperature: number|String,
+    top_p: number|String,
     stop_sequence: string,
   }
 
   //limits
-  token_max_length = Math.min(512, token_max_length)
-  const maxCharLength = 5000 - token_max_length*3
+  token_max_length = Math.min(250, Number(token_max_length))
+  const maxCharLength = 512
   if(context.length > maxCharLength){
     context = context.slice(context.length-maxCharLength)
   }
 
-  const payload = {
-    context: context,
-    token_max_length: token_max_length.toString(),
-    temperature: temperature.toString(),
-    top_p: top_p.toString(),
-    stop_sequence: stop_sequence,
+  const params = {
+    max_new_tokens: token_max_length,
+    do_sample: true,
+    temperature: Number(temperature),
+    top_p: Number(top_p),
+    return_full_text: false,
   }
-  const url = new URL('http://api.vicgalle.net:5000/generate')
-  url.search = new URLSearchParams(payload).toString();
+  
+  let response
 
-  fetch(url.toString(), { method: "POST"})
-    .then(res => {
-      return res.json() as Promise<{
-        compute_time: number,
-        model: string,
-        prompt: string,
-        stop_sequence: string,
-        temperature: 1,
-        text: string,
-        token_max_length: number,
-        top_p: number,
-      }>
-    })
-    .then(({text}) => {
-      if(text === "Sorry, the public API is limited to around 20 queries per every 30 minutes."){
-        // replace text with something more understandable
-        res.status(429).send({ text: "Sorry, the website is experiencing heavy usage right now.\nplease try again later." })
-      } 
-      else{
-        res.status(200).send({ text: text })
-      }
-    }).catch((error) =>{
-      console.log(error)
-      res.status(500).send({ text: "Sorry, the website is experiencing a server error right now.\nplease try again later." })
-    })
+  try {
+    response = await query({inputs: context, parameters: params})
+    return res.status(200).send({ text: response[0].generated_text.split(stop_sequence)[0] })
+  }
+  catch(error) {
+    console.log(response, error)
+    res.status(500).send({ text: `Errors:\n\n${response.error.join('\n\n')}` ?? "Sorry, the website is experiencing a server error right now.\nplease try again later." })
+  }
 }
