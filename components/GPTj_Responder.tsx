@@ -1,4 +1,5 @@
 import Filter from 'bad-words'
+import { interpolate } from "../utils/interpolate";
 
 export class GPTj_Responder {
   context: string
@@ -13,7 +14,7 @@ export class GPTj_Responder {
     }
     this.context += `${this.your_name} say "${messages[messages.length - 1]}"\n\n${this.GPTj_name} say "`;
     const payload = {
-      context: this.context,
+      context: interpolate(this.context, { your_name: this.your_name, AI_name: this.GPTj_name }),
       token_max_length: this.token_max_length,
       temperature: this.temperature,
       top_p: this.top_p,
