@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/Home.module.css";
+import { interpolate } from "../utils/interpolate";
 import { GPTj_Responder } from "./GPTj_Responder";
 import { Messager } from "./Messager";
 import { onChangeSet } from "../utils/onChangeSet";
@@ -12,11 +13,12 @@ export function Chat() {
     "This is a chat between a ${your_name} and ${AI_name}.\n${your_name} are a person.\n${AI_name} is very nice and funny."
   );
   const [temperature, setTemperature] = useState(1);
-  const [top_p, setTop_p] = useState(0.9);
+  const [top_p, setTop_p] = useState(1);
   const [text_to_speech, setText_to_speech] = useState(true);
   const [filter_bad_words, setFilter_bad_words] = useState(true);
   const gptj_Responder = new GPTj_Responder();
-  gptj_Responder.preContext = pre_context +
+  gptj_Responder.preContext =
+    interpolate(pre_context, { your_name: your_name, ai_name: AI_name }) +
     "\n\n";
   gptj_Responder.your_name = your_name;
   gptj_Responder.GPTj_name = AI_name;
@@ -60,7 +62,7 @@ export function Chat() {
           <label>
             temperature
             <input
-              type="range"
+              type="number"
               max={1}
               min={0}
               step={0.01}
@@ -72,7 +74,7 @@ export function Chat() {
           <label>
             top_p
             <input
-              type="range"
+              type="number"
               max={1}
               min={0}
               step={0.01}
