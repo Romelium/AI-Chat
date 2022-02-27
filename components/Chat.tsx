@@ -13,7 +13,7 @@ export function Chat() {
     "This is a chat between a ${your_name} and ${AI_name}.\n${your_name} are a person.\n${AI_name} is very nice and funny."
   );
   const [temperature, setTemperature] = useState(1);
-  const [top_p, setTop_p] = useState(1);
+  const [top_p, setTop_p] = useState(0.9);
   const [text_to_speech, setText_to_speech] = useState(true);
   const [filter_bad_words, setFilter_bad_words] = useState(true);
   const gptj_Responder = new GPTj_Responder();
