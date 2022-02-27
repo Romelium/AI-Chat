@@ -14,6 +14,7 @@
     "@types/bad-words": "^3.0.1",
     "bad-words": "^3.0.4",
     "next": "^12.1.0",
+    "next-pwa": "^5.4.4",
     "next-share": "^0.12.1",
     "react": "17.0.2",
     "react-contenteditable": "^3.3.6",
