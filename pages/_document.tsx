@@ -1,11 +1,53 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+const url = "https://ai-chat.vercel.app";
+const title = "AI Chat - Open Source | Powered by GPT-j with 6 billion neurons";
+const description =
+  "Chat with an AI that's powered by GPT-j. Talk with it, set parameters, ask questions, and twist words";
+const facebook_app_id = "4962116933806461";
 class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
         <Head>
+          <meta charSet="UTF-8" />
+          <meta name="description" content={description} />
+          <meta
+            name="keywords"
+            content="Open source, Chat, AI, GPT-j, Talk, set parameters, ask questions, twist words, change words"
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="author" content="Romelianism" />
+          <link rel="icon" href="/ai-chat.svg" />
+          <link
+            rel="canonical"
+            href={this.props.__NEXT_DATA__.page}
+            key="canonical"
+          />
+
+          <meta
+            name="google-site-verification"
+            content="aEIqWFtqo_HRgR_m2O_DbWu0Ukrt_zZAWZn7HHARpj8"
+          />
+
+          <meta name="author" content="Romelianism" />
+
+          <meta
+            property="og:url"
+            content={`${url}${this.props.__NEXT_DATA__.page}`}
+          />
+          <meta property="og:site_name" content={"AI Chat"} />
+          <meta property="og:type" content={"website"} />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:image" content={`${url}/ai-chat.vercel.app.png`} />
+          <meta property="og:image:alt" content={description} />
+
+          <meta property="fb:app_id" content={facebook_app_id} />
+
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:creator" content="@romelianism" />
+          <meta name="twitter:description" content={description} />
 
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon.png"></link>
