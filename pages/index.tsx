@@ -55,35 +55,6 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>{title}</title>
-        <meta charSet="UTF-8" />
-        <meta name="description" content={description} />
-        <meta
-          name="keywords"
-          content="Open source, Chat, AI, GPT-j, Talk, set parameters, ask questions, twist words, change words"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="author" content="Romelianism" />
-        <link rel="icon" href="/ai-chat.svg" />
-        <link rel="canonical" href={url} key="canonical" />
-
-        <meta
-          name="google-site-verification"
-          content="aEIqWFtqo_HRgR_m2O_DbWu0Ukrt_zZAWZn7HHARpj8"
-        />
-
-        <meta property="og:url" content={url} />
-        <meta property="og:site_name" content={"AI Chat"} />
-        <meta property="og:type" content={"website"} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={url + "ai-chat.vercel.app.png"} />
-        <meta property="og:image:alt" content={description} />
-
-        <meta property="fb:app_id" content={facebook_app_id} />
-
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:creator" content="@romelianism" />
-        <meta name="twitter:description" content={description} />
       </Head>
 
       <main className={styles.main}>
