@@ -20,16 +20,22 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>AI Chat</h1>
-        <h2> Open source website </h2>
-
-        <p className={styles.description}>
-          Chat with an AI that&apos;s powered by{" "}
-          <a href="https://github.com/kingoflolz/mesh-transformer-jax.git">
-            GPT-j
-          </a>
-          . Talk with it, set parameters, ask questions, and twist words
-        </p>
+        <h1 className={styles.title}>Welcome to AI Chat</h1>
+        <h2> You can use AI Chat to </h2>
+        <ul>
+          <li>
+            <h3>Talk to God about your dog</h3>
+          </li>
+          <li>
+            <h3>Ask Donald Trump why he is bald</h3>
+          </li>
+          <li>
+            <h3>Talk back against your parents</h3>
+          </li>
+          <li>
+            <h3>Blackmail the devil that he is gay</h3>
+          </li>
+        </ul>
 
         <Chat />
 
