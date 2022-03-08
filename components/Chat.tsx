@@ -27,6 +27,11 @@ export function Chat() {
   gptj_Responder.filter_bad_words = filter_bad_words;
   return (
     <div className={styles.game}>
+      <p>
+        Warning: <br />
+        The site can only make 20 response per every 30 minutes for the whole
+        site!
+      </p>
       <Messager
         contenteditable={true}
         responder={gptj_Responder}
