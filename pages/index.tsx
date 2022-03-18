@@ -20,7 +20,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to AI Chat</h1>
+        <h1 className={styles.title}>
+          <strong>AI Chat is currently broken due to connection errors</strong>
+        </h1>
         <h2> You can use AI Chat to </h2>
         <ul>
           <li>
@@ -36,6 +38,11 @@ const Home: NextPage = () => {
             <h3>Blackmail the devil that he is gay</h3>
           </li>
         </ul>
+        <h2>At the foreseeable future it would be still down</h2>
+        <h2>
+          but it could be fixed by the time that your seeing this so try to chat
+          to check if it works
+        </h2>
 
         <Chat />
 
